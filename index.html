@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>九游 ｜ 实用站点概要</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f4f6fa;
+            color: #1e2a3a;
+            line-height: 1.6;
+        }
+
+        /* 深色头图 */
+        .hero {
+            background: linear-gradient(145deg, #0b1622 0%, #1b2a3c 80%);
+            color: #eef3f7;
+            padding: 3.5rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            right: -20px;
+            top: -30px;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(100, 150, 200, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-size: 2.3rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0.75rem auto 0;
+            font-weight: 300;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            margin-top: 1.2rem;
+            padding: 0.3rem 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 40px;
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(2px);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2.2rem 1.5rem 3rem;
+        }
+
+        /* 卡片区块 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin: 2.2rem 0 2.5rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            transition: transform 0.2s ease, box-shadow 0.25s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 550;
+            margin-bottom: 0.8rem;
+            color: #132333;
+            border-left: 4px solid #2b7fc9;
+            padding-left: 0.8rem;
+        }
+
+        .card p {
+            font-size: 0.98rem;
+            color: #2d3f52;
+            margin-bottom: 0.5rem;
+        }
+
+        .card .small-meta {
+            font-size: 0.85rem;
+            color: #5a6c7e;
+            margin-top: 0.8rem;
+            border-top: 1px dashed #dee6ef;
+            padding-top: 0.6rem;
+        }
+
+        /* 高亮强调色用于链接 */
+        a {
+            color: #1d6eb6;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        a:hover {
+            color: #0a4a85;
+            border-bottom-color: #0a4a85;
+        }
+
+        .scene-list {
+            background: white;
+            border-radius: 20px;
+            padding: 1.8rem 1.8rem 1.2rem;
+            margin: 1.8rem 0 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+        }
+
+        .scene-list h2 {
+            font-size: 1.4rem;
+            font-weight: 540;
+            margin-bottom: 1.2rem;
+            color: #1f3247;
+        }
+
+        .scene-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            margin-bottom: 1.1rem;
+        }
+
+        .scene-item .icon-bullet {
+            min-width: 24px;
+            height: 24px;
+            background: #e4edf7;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #1d6eb6;
+            font-weight: 600;
+        }
+
+        .scene-item p {
+            margin: 0;
+            font-size: 0.98rem;
+        }
+
+        .note-box {
+            background: #eaf1fa;
+            border-left: 4px solid #2b7fc9;
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .note-box strong {
+            color: #10355e;
+        }
+
+        .faq-mini {
+            margin-top: 2.8rem;
+            border-top: 1px solid #d5dfea;
+            padding-top: 1.8rem;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.8rem;
+            background: #f9fbfd;
+            border-radius: 12px;
+            padding: 0.6rem 1.2rem;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .faq-mini details[open] {
+            background: #eef3fa;
+        }
+
+        .faq-mini summary {
+            font-weight: 520;
+            color: #1a2f44;
+        }
+
+        .faq-mini summary::-webkit-details-marker {
+            color: #2b7fc9;
+        }
+
+        .faq-mini .answer {
+            margin-top: 0.6rem;
+            padding-left: 0.5rem;
+            color: #2d4055;
+        }
+
+        .footer-note {
+            margin-top: 2.2rem;
+            font-size: 0.85rem;
+            color: #5e7389;
+            text-align: center;
+            border-top: 1px solid #dce4ed;
+            padding-top: 1.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .container {
+                padding: 1.5rem 1rem 2rem;
+            }
+
+            .hero {
+                padding: 2.5rem 1rem;
+            }
+
+            .card {
+                padding: 1.5rem 1.2rem;
+            }
+
+            .scene-list {
+                padding: 1.3rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .hero .sub {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1>九游 · 实用信息站</h1>
+        <p class="sub">一个提供简洁路径与内容指引的站点，聚焦日常所需，不浮夸、不冗余。</p>
+        <span class="tagline">轻量 · 直接 · 可信</span>
+    </section>
+
+    <div class="container">
+
+        <!-- 摘要 -->
+        <div style="font-size: 1.05rem; margin-bottom: 1.2rem; background: white; border-radius: 20px; padding: 1.5rem 1.8rem; box-shadow: 0 2px 12px rgba(0,0,0,0.02);">
+            <p>如果你在找一个信息整合得比较清晰、没有太多干扰的页面，<strong>九游</strong> 或许值得你看一眼。站点本身以工具型内容为主，不做夸张包装，也不收集多余信息。它更倾向于帮你快速定位到想要的东西，而不是让你在页面上绕圈子。</p>
+        </div>
+
+        <!-- 亮点卡片 -->
+        <div class="card-grid">
+            <div class="card">
+                <h3>🗂️ 信息结构</h3>
+                <p>页面分区直接，分类贴近日常使用习惯。从索引到具体板块，基本上两步之内能到达，不需要反复跳转。</p>
+                <div class="small-meta">适合喜欢清爽浏览的人</div>
+            </div>
+            <div class="card">
+                <h3>🔍 低干扰体验</h3>
+                <p>没有弹窗、没有强制关注，也没有自动播放的内容。你打开页面就是你想看的东西，仅此而已。</p>
+                <div class="small-meta">专注内容本身</div>
+            </div>
+            <div class="card">
+                <h3>📎 实用指向</h3>
+                <p>站内提供的链接与说明均经过基础核实，不随意跳转第三方。如果你需要某个方向的指引，这里通常会有对应的简洁入口。</p>
+                <div class="small-meta">减少试错成本</div>
+            </div>
+            <div class="card">
+                <h3>🧩 持续打磨</h3>
+                <p>根据使用反馈，站点会调整内容布局和优先级。并不是一成不变，但变化都以实用为前提。</p>
+                <div class="small-meta">迭代有方向</div>
+            </div>
+        </div>
+
+        <!-- 使用建议 / 场景 -->
+        <div class="scene-list">
+            <h2>📌 哪些时候可以用到</h2>
+            <div class="scene-item">
+                <span class="icon-bullet">1</span>
+                <p>当你想要快速找到某个分类下的常见信息，而不想在搜索引擎里翻好几页。站内的索引设计就是为了这个目的。</p>
+            </div>
+            <div class="scene-item">
+                <span class="icon-bullet">2</span>
+                <p>如果你需要一个相对干净、没有广告干扰的页面做基础查阅，<a href="https://cn-url-9y.com">九游</a> 在这方面做得比较克制，你可以直接把它加入书签。</p>
+            </div>
+            <div class="scene-item">
+                <span class="icon-bullet">3</span>
+                <p>当你对某个话题只是初步了解需求，不需要长篇大论时，站内的摘要式说明往往几句话就能讲清楚核心。</p>
+            </div>
+            <div class="scene-item">
+                <span class="icon-bullet">4</span>
+                <p>偶尔用来验证某个链接或资源是否还活着——因为这里列出的引用会定期检查有效性，不会出现大量死链。</p>
+            </div>
+        </div>
+
+        <!-- 可信但克制的访问说明 -->
+        <div class="note-box">
+            <strong>关于访问与隐私：</strong> 该站点不要求注册，不植入第三方跟踪脚本。所有页面均通过标准 HTTPS 传输，你可以放心浏览。如果你发现任何链接异常或内容过时，可以通过页面底部的方式反馈（如果有）。目前没有收集任何个人数据，连 Cookie 也只在必要会话中使用。
+        </div>
+
+        <!-- FAQ 摘要 -->
+        <div class="faq-mini">
+            <h2 style="font-size:1.2rem; font-weight:530; margin-bottom:0.5rem; color:#1f3247;">常见疑问 · 简短回答</h2>
+
+            <details>
+                <summary>这个站会一直免费吗？</summary>
+                <div class="answer">是的，目前没有任何收费计划。就算将来调整，也会提前在站内说明，不会突然变更。</div>
+            </details>
+
+            <details>
+                <summary>内容多久更新一次？</summary>
+                <div class="answer">主要板块每月检查一次，重要链接会不定期快速验证。你可以认为它至少保持季度级别的刷新频率。</div>
+            </details>
+
+            <details>
+                <summary>我能转载站上的内容吗？</summary>
+                <div class="answer">如果只是引用部分摘要或单个链接，注明来源即可。不建议大篇幅复制，毕竟这里的编写风格比较个人化。</div>
+            </details>
+
+            <details>
+                <summary>为什么叫“九游”？</summary>
+                <div class="answer">算是一个内部代号延续下来的名字，没有特别复杂的寓意，简单好记。站点本身也不喜欢故弄玄虚。</div>
+            </details>
+        </div>
+
+        <!-- 页脚 -->
+        <div class="footer-note">
+            <p>— 如果你觉得这个站点有用，不妨把它分享给需要的人。更多内容请访问 <a href="https://cn-url-9y.com">九游</a> · 信息页 · 当前版本 2025</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
